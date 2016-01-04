@@ -12,12 +12,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let imageView:UIImageView = UIImageView()
+        imageView.frame = view.bounds
+        imageView.image = UIImage(named: "Icon")
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        view.addSubview(imageView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
