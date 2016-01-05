@@ -13,9 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.blackColor()
         let imageView:UIImageView = UIImageView()
         imageView.frame = view.bounds
-        imageView.image = UIImage(named: "Icon")
+        imageView.image = UIImage(named: "Icon-1024")
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         view.addSubview(imageView)
     }
@@ -23,7 +24,5 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
 }
 
