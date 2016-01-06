@@ -12,17 +12,25 @@ import Photos
 class IFPhotoDetailVC: UIViewController {
 
     var asset: PHAsset?
+    var scrollView: UIScrollView?
+    var imageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
-        let imageView = UIImageView(frame: view.bounds)
-        view.addSubview(imageView)
-        imageView.contentMode = .ScaleAspectFit
+        
+        scrollView = UIScrollView(frame: view.bounds)
+        scrollView?.delegate = self
+        scrollView?.maximumZoomScale = 3.0
+        view.addSubview(scrollView!)
+        
+        imageView = UIImageView(frame: view.bounds)
+        scrollView!.addSubview(imageView!)
+        imageView!.contentMode = .ScaleAspectFit
         let imageManager: PHImageManager = PHImageManager()
         imageManager.requestImageForAsset(asset!, targetSize: CGSize(width: (asset?.pixelWidth)!, height: (asset?.pixelHeight)!), contentMode: PHImageContentMode.AspectFill, options: nil) { (cellImage, info) -> Void in
-            imageView.image = cellImage
+            self.imageView!.image = cellImage
         }
     }
 
@@ -30,4 +38,10 @@ class IFPhotoDetailVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
+}
+
+extension IFPhotoDetailVC: UIScrollViewDelegate {
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
 }
