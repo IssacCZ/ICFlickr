@@ -101,6 +101,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return CGSize(width: model.width, height: model.height)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let photoDetailVC = IFPhotoDetailVC()
+        photoDetailVC.asset = favorites![indexPath.item] as? PHAsset
+        navigationController?.pushViewController(photoDetailVC, animated: true)
+    }
+    
     func fixImageRatio() {
         let usedScreenWidth: CGFloat = AppUtil.currentWidth() - 4.0
         let minHeightLimit: CGFloat = usedScreenWidth / 4.0

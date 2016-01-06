@@ -14,6 +14,7 @@
 		227947551C3B6D180006FDEE /* Icon-1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 227947541C3B6D180006FDEE /* Icon-1024.png */; };
 		227947571C3B98C10006FDEE /* AppUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227947561C3B98C10006FDEE /* AppUtil.swift */; };
 		227947601C3BFEC20006FDEE /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279475F1C3BFEC20006FDEE /* PhotoModel.swift */; };
+		227947671C3D28400006FDEE /* IFPhotoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227947661C3D28400006FDEE /* IFPhotoDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		227947541C3B6D180006FDEE /* Icon-1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-1024.png"; sourceTree = "<group>"; };
 		227947561C3B98C10006FDEE /* AppUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtil.swift; sourceTree = "<group>"; };
 		2279475F1C3BFEC20006FDEE /* PhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		227947661C3D28400006FDEE /* IFPhotoDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFPhotoDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				227947461C3A9FE80006FDEE /* ViewController.swift */,
 				227947561C3B98C10006FDEE /* AppUtil.swift */,
 				2279475F1C3BFEC20006FDEE /* PhotoModel.swift */,
+				227947661C3D28400006FDEE /* IFPhotoDetailVC.swift */,
 			);
 			path = Codes;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				227947571C3B98C10006FDEE /* AppUtil.swift in Sources */,
+				227947671C3D28400006FDEE /* IFPhotoDetailVC.swift in Sources */,
 				2279474E1C3A9FE80006FDEE /* ViewController.swift in Sources */,
 				227947601C3BFEC20006FDEE /* PhotoModel.swift in Sources */,
 				2279474D1C3A9FE80006FDEE /* AppDelegate.swift in Sources */,

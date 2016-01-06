@@ -24,6 +24,24 @@
             </objects>
             <point key="canvasLocation" x="1507" y="475"/>
         </scene>
+        <!--Photo DetailVC-->
+        <scene sceneID="vRH-cp-ooh">
+            <objects>
+                <viewController id="LCI-iX-oCS" customClass="IFPhotoDetailVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pPy-AY-aZQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="MmF-cB-E9X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5RR-5y-9gD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAR-TJ-yWL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2297" y="475"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="05g-dM-rHO">
             <objects>
