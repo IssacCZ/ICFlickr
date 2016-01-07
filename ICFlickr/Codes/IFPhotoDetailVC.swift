@@ -26,6 +26,7 @@ class IFPhotoDetailVC: UIViewController {
         view.addSubview(scrollView!)
         
         imageView = UIImageView(frame: view.bounds)
+        imageView?.center = CGPoint(x: view.bounds.size.width / 2, y: view.bounds.size.height / 2 - 32)
         scrollView!.addSubview(imageView!)
         imageView!.contentMode = .ScaleAspectFit
         let imageManager: PHImageManager = PHImageManager()
