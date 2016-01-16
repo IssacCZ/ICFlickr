@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NativeAlbumVC.swift
 //  ICFlickr
 //
 //  Created by IssacCZ on 1/4/16.
@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var collectionView: UICollectionView!
     var favorites: PHFetchResult?
@@ -89,11 +89,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 2
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -102,7 +102,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let photoDetailVC = IFPhotoDetailVC()
+        let photoDetailVC = PhotoDetailVC()
         photoDetailVC.asset = favorites![indexPath.item] as? PHAsset
         navigationController?.pushViewController(photoDetailVC, animated: true)
     }

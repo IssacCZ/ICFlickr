@@ -8,7 +8,7 @@
         <!--Favorites-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NativeAlbumVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -27,7 +27,7 @@
         <!--Photo DetailVC-->
         <scene sceneID="vRH-cp-ooh">
             <objects>
-                <viewController id="LCI-iX-oCS" customClass="IFPhotoDetailVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LCI-iX-oCS" customClass="PhotoDetailVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pPy-AY-aZQ"/>
                         <viewControllerLayoutGuide type="bottom" id="MmF-cB-E9X"/>
@@ -55,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" image="more" id="qMY-cI-HK7"/>
+                    <tabBarItem key="tabBarItem" title="More" image="TabBarMore" id="qMY-cI-HK7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFa-zA-C6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +83,7 @@
         <scene sceneID="05g-dM-rHO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a1w-md-0Y3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="more" id="ZaH-bU-Rhu"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="TabBarHome" id="ZaH-bU-Rhu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lk7-Vk-fBD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -100,6 +100,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="more" width="35" height="25"/>
+        <image name="TabBarHome" width="25" height="25"/>
+        <image name="TabBarMore" width="35" height="25"/>
     </resources>
 </document>

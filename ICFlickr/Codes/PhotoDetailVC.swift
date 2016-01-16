@@ -1,5 +1,5 @@
 //
-//  IFPhotoDetailVC.swift
+//  PhotoDetailVC.swift
 //  ICFlickr
 //
 //  Created by IssacCZ on 1/6/16.
@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class IFPhotoDetailVC: UIViewController {
+class PhotoDetailVC: UIViewController {
 
     var asset: PHAsset?
     var scrollView: UIScrollView?
@@ -41,7 +41,7 @@ class IFPhotoDetailVC: UIViewController {
 
 }
 
-extension IFPhotoDetailVC: UIScrollViewDelegate {
+extension PhotoDetailVC: UIScrollViewDelegate {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
