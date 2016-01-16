@@ -14,6 +14,7 @@ class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICol
     var collectionView: UICollectionView!
     var favorites: PHFetchResult?
     var fixModel = [PhotoModel]()
+    var reverseAssets = [PHAsset]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICol
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (favorites?.count)!
+        return reverseAssets.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -73,8 +74,8 @@ class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICol
         imageView.clipsToBounds = true
         cell.addSubview(imageView)
         
-        let asset: PHAsset = favorites![indexPath.item] as! PHAsset
-        print("\(asset.pixelWidth), \(asset.pixelHeight)")
+        let asset: PHAsset = reverseAssets[indexPath.item]
+//        print("\(asset.pixelWidth), \(asset.pixelHeight)")
         
         let imageManager: PHImageManager = PHImageManager()
         imageManager.requestImageForAsset(asset, targetSize: CGSize(width: 500, height: 500), contentMode: PHImageContentMode.AspectFill, options: nil) { (cellImage, info) -> Void in
@@ -103,18 +104,25 @@ class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICol
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let photoDetailVC = PhotoDetailVC()
-        photoDetailVC.asset = favorites![indexPath.item] as? PHAsset
+        photoDetailVC.asset = reverseAssets[indexPath.item]
         navigationController?.pushViewController(photoDetailVC, animated: true)
     }
     
     func fixImageRatio() {
+        var reverse: Int
+        for reverse = (favorites?.count)! - 1; reverse > -1; reverse-- {
+            let asset: PHAsset = favorites![reverse] as! PHAsset
+            reverseAssets.append(asset)
+        }
+
+        
         let usedScreenWidth: CGFloat = AppUtil.currentWidth() - 4.0
         let minHeightLimit: CGFloat = usedScreenWidth / 4.0
         let margin: CGFloat = 2.0
         
         var index: Int
-        for index = 0; index < favorites!.count; index++ {
-            let asset: PHAsset = favorites![index] as! PHAsset
+        for index = 0; index < reverseAssets.count; index++ {
+            let asset: PHAsset = reverseAssets[index]
             let height: CGFloat = (CGFloat)(asset.pixelHeight)
             let width: CGFloat = (CGFloat)(asset.pixelWidth)
             let scale: CGFloat = minHeightLimit / (CGFloat)(asset.pixelHeight)
