@@ -27,7 +27,7 @@
         <!--Top Hit-->
         <scene sceneID="kcu-0V-ZtK">
             <objects>
-                <viewController id="pPW-yS-uRJ" sceneMemberID="viewController">
+                <viewController id="pPW-yS-uRJ" customClass="TopHitVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zTZ-Wg-FTr"/>
                         <viewControllerLayoutGuide type="bottom" id="wlb-A7-xEv"/>

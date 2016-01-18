@@ -1,0 +1,132 @@
+//
+//  TopHitVC.swift
+//  ICFlickr
+//
+//  Created by 李焯财 on 1/17/16.
+//  Copyright © 2016 Issac. All rights reserved.
+//
+
+import UIKit
+
+class TopHitVC: UIViewController {
+    var photoURLs = [NSURL]()
+    var titles = [String]()
+    var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setDefaultValues()
+        initUI()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadFlickrPhotos()
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func setDefaultValues() {
+        FlickrKit.sharedFlickrKit().initializeWithAPIKey(FLICKR_API_KEY, sharedSecret: FLICKR_API_SECRET)
+        loadFlickrPhotos()
+    }
+    
+    func loadFlickrPhotos() {
+        let fk = FlickrKit.sharedFlickrKit()
+        let interesting = FKFlickrInterestingnessGetList()
+        let month = 1 + Int(arc4random_uniform(12))
+        let day = 1 + Int(arc4random_uniform(31))
+        var strM = ""
+        if month < 10 {
+            strM = String(format: "0%d", arguments: [month])
+        } else {
+            strM = String(format: "%d", arguments: [month])
+        }
+        var strD = ""
+        if day < 10 {
+            strD = String(format: "0%d", arguments: [day])
+        } else {
+            strD = String(format: "%d", arguments: [day])
+        }
+        
+        let formatteTitle = String(format: "2015-%@-%@ Top Hit", arguments: [strM, strD])
+        title = formatteTitle
+        print(String(format: "2015-%@-%@", arguments: [strM, strD]))
+        interesting.date = String(format: "2015-%@-%@", arguments: [strM, strD])
+        
+        fk.call(interesting) { (response, error) -> Void in
+            if (response != nil) {
+                self.photoURLs.removeAll()
+                self.titles.removeAll()
+                print(response)
+                let topPhotos = response["photos"] as! [NSObject: AnyObject]
+                let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
+                for photoDictionary in photoArray {
+                    let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeMedium640, fromPhotoDictionary: photoDictionary)
+                    let title = photoDictionary["title"] as! String
+                    
+                    self.titles.append(title)
+                    self.photoURLs.append(photoURL)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
+    func initUI() {
+        view.backgroundColor = UIColor.whiteColor()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        tableView = UITableView(frame: view.bounds, style: .Plain)
+        tableView!.delegate = self
+        tableView!.dataSource = self
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.separatorStyle = .None
+        view.addSubview(tableView)
+    }
+}
+
+extension TopHitVC: UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photoURLs.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+        cell.subviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 15, y: cell.frame.size.height - 15 - 20, width: AppUtil.currentWidth() - 30, height: 20)
+        label.textColor = UIColor.whiteColor()
+        label.font = UIFont.systemFontOfSize(20)
+        label.text = titles[indexPath.row]
+        
+        let imageView:UIImageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 1, width: AppUtil.currentWidth(), height: cell.frame.size.height - 2)
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.sd_setImageWithURL(photoURLs[indexPath.row])
+        cell.addSubview(imageView)
+        
+        cell.insertSubview(label, aboveSubview: imageView)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return AppUtil.currentWidth() * 3 / 4.0
+    }
+}
+
+extension TopHitVC: UITableViewDelegate {
+
+}
