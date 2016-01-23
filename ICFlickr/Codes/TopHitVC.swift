@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlickrKit
 
 class TopHitVC: UIViewController {
     var photoURLs = [NSURL]()
@@ -65,7 +66,7 @@ class TopHitVC: UIViewController {
                 let topPhotos = response["photos"] as! [NSObject: AnyObject]
                 let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
                 for photoDictionary in photoArray {
-                    let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeMedium640, fromPhotoDictionary: photoDictionary)
+                    let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeSmall320, fromPhotoDictionary: photoDictionary)
                     let title = photoDictionary["title"] as! String
                     
                     self.titles.append(title)
@@ -123,7 +124,7 @@ extension TopHitVC: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return AppUtil.currentWidth() * 3 / 4.0
+        return AppUtil.currentWidth() * 9 / 21.0
     }
 }
 

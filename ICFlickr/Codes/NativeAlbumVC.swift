@@ -19,8 +19,8 @@ class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setDefaultValues()
-        initUI()
+//        setDefaultValues()
+//        initUI()
     }
     
     override func didReceiveMemoryWarning() {
