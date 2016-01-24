@@ -47,8 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         let scheme = url.scheme
         if("icflickr" == scheme) {
-            // I don't recommend doing it like this, it's just a demo... I use an authentication
-            // controller singleton object in my projects
             NSNotificationCenter.defaultCenter().postNotificationName("UserAuthCallbackNotification", object: url)
         }
         return true

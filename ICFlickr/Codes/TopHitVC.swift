@@ -55,7 +55,6 @@ class TopHitVC: UIViewController {
         title = formatteTitle
         print(String(format: "2015-%@-%@", arguments: [strM, strD]))
         interesting.date = String(format: "2015-%@-%@", arguments: [strM, strD])
-        
         fk.call(interesting) { (response, error) -> Void in
             if (response != nil) {
                 self.photoURLs.removeAll()
