@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlickrKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        FlickrKit.sharedFlickrKit().initializeWithAPIKey(FLICKR_API_KEY, sharedSecret: FLICKR_API_SECRET)
         return true
     }
 
@@ -41,6 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        let scheme = url.scheme
+        if("icflickr" == scheme) {
+            // I don't recommend doing it like this, it's just a demo... I use an authentication
+            // controller singleton object in my projects
+            NSNotificationCenter.defaultCenter().postNotificationName("UserAuthCallbackNotification", object: url)
+        }
+        return true
+    }
 }
 

@@ -22,7 +22,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="803.73333333333335" y="449.66666666666669"/>
+            <point key="canvasLocation" x="-137" y="-231"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="7j9-oI-O3b">
+            <objects>
+                <viewController id="Zhe-RR-luF" customClass="UserProfileVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bCX-sU-oQH"/>
+                        <viewControllerLayoutGuide type="bottom" id="CKx-D7-iTv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7fO-gM-d3H">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzd-Pq-vgc">
+                                <rect key="frame" x="141" y="269" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <segue destination="6d4-Ba-X4q" kind="push" id="TYB-MA-4t4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="0Wk-YQ-U4a"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BGx-ge-9fs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="449"/>
         </scene>
         <!--Top Hit-->
         <scene sceneID="kcu-0V-ZtK">
@@ -42,6 +70,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFa-zA-C6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="395" y="1193"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="KQ1-PB-akJ">
+            <objects>
+                <viewController id="6d4-Ba-X4q" customClass="LoginVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nal-59-mMT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZJa-hH-byZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gfe-0b-ZgG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o68-Xb-5cY">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o68-Xb-5cY" firstAttribute="top" secondItem="Nal-59-mMT" secondAttribute="bottom" id="5Zn-Og-6aV"/>
+                            <constraint firstItem="o68-Xb-5cY" firstAttribute="leading" secondItem="Gfe-0b-ZgG" secondAttribute="leading" id="Bxi-sE-vHV"/>
+                            <constraint firstAttribute="trailing" secondItem="o68-Xb-5cY" secondAttribute="trailing" id="a3f-y7-UQr"/>
+                            <constraint firstItem="ZJa-hH-byZ" firstAttribute="top" secondItem="o68-Xb-5cY" secondAttribute="bottom" id="vTV-9y-YOf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="g7U-gb-swp"/>
+                    <connections>
+                        <outlet property="webView" destination="o68-Xb-5cY" id="sTQ-qx-0vM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXH-ak-jUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="1193"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Js1-UY-UaL">
@@ -73,7 +135,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xqU-Q2-vDj"/>
+                        <segue destination="Zhe-RR-luF" kind="relationship" relationship="rootViewController" id="iNq-kL-443"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7w-Rl-05V" userLabel="First Responder" sceneMemberID="firstResponder"/>

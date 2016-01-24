@@ -11,4 +11,5 @@ import UIKit
 
 let FLICKR_API_KEY = "29934731a8d045fb671bc21ab9ef89a1"
 let FLICKR_API_SECRET = "aff19ca32b6e7329"
+let ICFLICKR_AUTH_URL = "https://www.flickr.com/auth-72157663233329265"
 

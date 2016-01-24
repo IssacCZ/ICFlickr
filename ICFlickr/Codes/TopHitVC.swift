@@ -23,15 +23,13 @@ class TopHitVC: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        loadFlickrPhotos()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     func setDefaultValues() {
-        FlickrKit.sharedFlickrKit().initializeWithAPIKey(FLICKR_API_KEY, sharedSecret: FLICKR_API_SECRET)
         loadFlickrPhotos()
     }
     
