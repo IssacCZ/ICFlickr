@@ -59,7 +59,7 @@ class TopHitVC: UIViewController {
             if (response != nil) {
                 self.photoURLs.removeAll()
                 self.titles.removeAll()
-                print(response)
+//                print(response)
                 let topPhotos = response["photos"] as! [NSObject: AnyObject]
                 let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
                 for photoDictionary in photoArray {

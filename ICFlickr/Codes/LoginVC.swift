@@ -14,10 +14,14 @@ class LoginVC: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         FlickrKit.sharedFlickrKit().initializeWithAPIKey(FLICKR_API_KEY, sharedSecret: FLICKR_API_SECRET)
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.hidesBottomBarWhenPushed = true
+        
         // This must be defined in your Info.plist
         // See FlickrKitDemo-Info.plist
         // Flickr will call this back. Ensure you configure your flickr app as a web app

@@ -10,8 +10,8 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NativeAlbumVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="vQg-x8-RaP"/>
+                        <viewControllerLayoutGuide type="bottom" id="k5M-gq-xhM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -29,24 +29,47 @@
             <objects>
                 <viewController id="Zhe-RR-luF" customClass="UserProfileVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bCX-sU-oQH"/>
-                        <viewControllerLayoutGuide type="bottom" id="CKx-D7-iTv"/>
+                        <viewControllerLayoutGuide type="top" id="CZc-tA-3YI"/>
+                        <viewControllerLayoutGuide type="bottom" id="2vf-ey-6Lb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7fO-gM-d3H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzd-Pq-vgc">
-                                <rect key="frame" x="141" y="269" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <segue destination="6d4-Ba-X4q" kind="push" id="TYB-MA-4t4"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vh-fj-JSf">
+                                <rect key="frame" x="0.0" y="64" width="320" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVn-Ug-UyM">
+                                        <rect key="frame" x="124" y="92" width="73" height="30"/>
+                                        <state key="normal" title="UserName"/>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXS-OS-1VF">
+                                        <rect key="frame" x="133" y="29" width="55" height="55"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="GXS-OS-1VF" firstAttribute="centerX" secondItem="6Vh-fj-JSf" secondAttribute="centerX" id="XAW-ck-4XN"/>
+                                    <constraint firstAttribute="height" constant="130" id="hcC-wD-sdS"/>
+                                    <constraint firstItem="WVn-Ug-UyM" firstAttribute="centerX" secondItem="6Vh-fj-JSf" secondAttribute="centerX" id="r4e-RI-SLD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6Vh-fj-JSf" firstAttribute="top" secondItem="CZc-tA-3YI" secondAttribute="bottom" id="0yk-Ap-wgv"/>
+                            <constraint firstItem="6Vh-fj-JSf" firstAttribute="leading" secondItem="7fO-gM-d3H" secondAttribute="leading" id="5jC-sD-vMC"/>
+                            <constraint firstItem="6Vh-fj-JSf" firstAttribute="leading" secondItem="7fO-gM-d3H" secondAttribute="leading" id="MN1-zU-0lX"/>
+                            <constraint firstAttribute="trailing" secondItem="6Vh-fj-JSf" secondAttribute="trailing" id="fx3-NQ-qiu"/>
+                            <constraint firstItem="6Vh-fj-JSf" firstAttribute="top" secondItem="CZc-tA-3YI" secondAttribute="bottom" id="kzJ-E3-wEW"/>
+                            <constraint firstAttribute="trailing" secondItem="6Vh-fj-JSf" secondAttribute="trailing" id="phu-bm-Ofp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="0Wk-YQ-U4a"/>
+                    <connections>
+                        <outlet property="UserAvatar" destination="GXS-OS-1VF" id="cCs-bu-sOs"/>
+                        <outlet property="loginButton" destination="WVn-Ug-UyM" id="pbf-PE-N5R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGx-ge-9fs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -57,8 +80,8 @@
             <objects>
                 <viewController id="pPW-yS-uRJ" customClass="TopHitVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zTZ-Wg-FTr"/>
-                        <viewControllerLayoutGuide type="bottom" id="wlb-A7-xEv"/>
+                        <viewControllerLayoutGuide type="top" id="7Na-6e-hE3"/>
+                        <viewControllerLayoutGuide type="bottom" id="HRQ-1G-2Nw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZI6-Qz-6fy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -76,25 +99,19 @@
             <objects>
                 <viewController id="6d4-Ba-X4q" customClass="LoginVC" customModule="ICFlickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nal-59-mMT"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZJa-hH-byZ"/>
+                        <viewControllerLayoutGuide type="top" id="tWz-Pn-4p7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kkp-a4-ZVY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Gfe-0b-ZgG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o68-Xb-5cY">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o68-Xb-5cY">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="o68-Xb-5cY" secondAttribute="trailing" id="86a-qH-mWQ"/>
-                            <constraint firstItem="o68-Xb-5cY" firstAttribute="top" secondItem="Gfe-0b-ZgG" secondAttribute="top" id="THg-Nc-Wry"/>
-                            <constraint firstItem="o68-Xb-5cY" firstAttribute="leading" secondItem="Gfe-0b-ZgG" secondAttribute="leading" id="u5Y-Uz-xpA"/>
-                            <constraint firstAttribute="bottom" secondItem="o68-Xb-5cY" secondAttribute="bottom" id="zn2-34-Bj5"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="g7U-gb-swp"/>
                     <connections>
