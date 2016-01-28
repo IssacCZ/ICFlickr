@@ -36,30 +36,11 @@ class TopHitVC: UIViewController {
     func loadFlickrPhotos() {
         let fk = FlickrKit.sharedFlickrKit()
         let interesting = FKFlickrInterestingnessGetList()
-        let month = 1 + Int(arc4random_uniform(12))
-        let day = 1 + Int(arc4random_uniform(31))
-        var strM = ""
-        if month < 10 {
-            strM = String(format: "0%d", arguments: [month])
-        } else {
-            strM = String(format: "%d", arguments: [month])
-        }
-        var strD = ""
-        if day < 10 {
-            strD = String(format: "0%d", arguments: [day])
-        } else {
-            strD = String(format: "%d", arguments: [day])
-        }
-        
-        let formatteTitle = String(format: "2015-%@-%@ Top Hit", arguments: [strM, strD])
-        title = formatteTitle
-        print(String(format: "2015-%@-%@", arguments: [strM, strD]))
-        interesting.date = String(format: "2015-%@-%@", arguments: [strM, strD])
         fk.call(interesting) { (response, error) -> Void in
             if (response != nil) {
                 self.photoURLs.removeAll()
                 self.titles.removeAll()
-//                print(response)
+                print(response)
                 let topPhotos = response["photos"] as! [NSObject: AnyObject]
                 let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
                 for photoDictionary in photoArray {
