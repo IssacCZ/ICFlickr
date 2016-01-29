@@ -88,6 +88,8 @@ extension TopHitVC: UITableViewDataSource {
         label.textColor = UIColor.whiteColor()
         label.font = UIFont.systemFontOfSize(20)
         label.text = titles[indexPath.row]
+        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        label.sizeToFit()
         
         let imageView:UIImageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 1, width: AppUtil.currentWidth(), height: cell.frame.size.height - 2)

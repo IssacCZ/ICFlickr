@@ -13,6 +13,10 @@ class UserProfileVC: UIViewController {
     var completeAuthOp: FKDUNetworkOperation!
     var checkAuthOp: FKDUNetworkOperation!
     
+    var photoURLs = [NSURL]()
+    var titles = [String]()
+    var tableView: UITableView!
+    
     /// 用户头像
     @IBOutlet weak var UserAvatar: UIImageView!
     /// 用户昵称或登录按钮
@@ -21,8 +25,48 @@ class UserProfileVC: UIViewController {
         super.viewDidLoad()
         
         self.checkAuthentication()
+        
+        initUI()
     }
     
+    func initUI() {
+        view.backgroundColor = UIColor.whiteColor()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        tableView = UITableView(frame: CGRect(x: 0, y: 130 + 64, width: AppUtil.currentWidth(), height: AppUtil.currentHeight() - 130 - 64 - 44), style: .Plain)
+        tableView!.delegate = self
+        tableView!.dataSource = self
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.separatorStyle = .None
+        view.addSubview(tableView)
+    }
+    
+    func loadFlickrPhotos(uid: String) {
+        let fk = FlickrKit.sharedFlickrKit()
+        let interesting = FKFlickrPeopleGetPhotos()
+        interesting.user_id = uid
+        fk.call(interesting) { (response, error) -> Void in
+            if (response != nil) {
+                self.photoURLs.removeAll()
+                self.titles.removeAll()
+                print(response)
+                let topPhotos = response["photos"] as! [NSObject: AnyObject]
+                let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
+                for photoDictionary in photoArray {
+                    let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeSmall320, fromPhotoDictionary: photoDictionary)
+                    let title = photoDictionary["title"] as! String
+                    
+                    self.titles.append(title)
+                    self.photoURLs.append(photoURL)
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        }
+    }
+
     func checkAuthentication() {
         if let localUserName = NSUserDefaults.standardUserDefaults().valueForKey(kAPP_LOCAL_USER_NAME) {
             self.loginButton.setTitle(localUserName as? String, forState: .Normal)
@@ -39,6 +83,7 @@ class UserProfileVC: UIViewController {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     if ((error == nil)) {
                         print("登录返回，用户名是\(userName)，id是\(userId)")
+                        self.loadFlickrPhotos(userId)
                         let userInfoAPI = FKFlickrPeopleGetInfo()
                         userInfoAPI.user_id = userId
                         FlickrKit.sharedFlickrKit().call(userInfoAPI, completion: { (response, error) -> Void in
@@ -60,6 +105,7 @@ class UserProfileVC: UIViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if ((error == nil)) {
                     print("检查已登录，用户名是\(userName)，id是\(userId)")
+                    self.loadFlickrPhotos(userId)
                     let userInfoAPI = FKFlickrPeopleGetInfo()
                     userInfoAPI.user_id = userId
                     FlickrKit.sharedFlickrKit().call(userInfoAPI, completion: { (response, error) -> Void in
@@ -88,4 +134,45 @@ class UserProfileVC: UIViewController {
             });
         }
     }
+}
+
+extension UserProfileVC: UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photoURLs.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        
+        cell.subviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 15, y: cell.frame.size.height - 15 - 20, width: AppUtil.currentWidth() - 30, height: 20)
+        label.textColor = UIColor.whiteColor()
+        label.font = UIFont.systemFontOfSize(20)
+        label.text = titles[indexPath.row]
+        label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        label.sizeToFit()
+        
+        let imageView:UIImageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 1, width: AppUtil.currentWidth(), height: cell.frame.size.height - 2)
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.sd_setImageWithURL(photoURLs[indexPath.row])
+        cell.addSubview(imageView)
+        
+        cell.insertSubview(label, aboveSubview: imageView)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return AppUtil.currentWidth() * 9 / 21.0
+    }
+}
+
+extension UserProfileVC: UITableViewDelegate {
+    
 }
