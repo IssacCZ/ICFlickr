@@ -9,6 +9,7 @@
 import UIKit
 import FlickrKit
 
+/// 用户个人主页
 class UserProfileVC: UIViewController {
     var completeAuthOp: FKDUNetworkOperation!
     var checkAuthOp: FKDUNetworkOperation!
@@ -21,6 +22,8 @@ class UserProfileVC: UIViewController {
     @IBOutlet weak var UserAvatar: UIImageView!
     /// 用户昵称或登录按钮
     @IBOutlet weak var loginButton: UIButton!
+    
+    // MARK: - UIView
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +31,8 @@ class UserProfileVC: UIViewController {
         
         initUI()
     }
-    
+
+    // MARK: - 初始化设置
     func initUI() {
         view.backgroundColor = UIColor.whiteColor()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -136,6 +140,7 @@ class UserProfileVC: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension UserProfileVC: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photoURLs.count
@@ -173,6 +178,7 @@ extension UserProfileVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegatge
 extension UserProfileVC: UITableViewDelegate {
     
 }

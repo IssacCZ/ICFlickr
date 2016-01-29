@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 
+/// 本地相册，等高响应式排布，已弃用
 class NativeAlbumVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var collectionView: UICollectionView!

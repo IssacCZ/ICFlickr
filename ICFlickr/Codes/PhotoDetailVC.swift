@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 
+/// 本地相册单张详情，已弃用
 class PhotoDetailVC: UIViewController {
 
     var asset: PHAsset?

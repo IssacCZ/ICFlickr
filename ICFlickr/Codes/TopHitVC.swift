@@ -9,11 +9,16 @@
 import UIKit
 import FlickrKit
 
+/// 最近最热照片
 class TopHitVC: UIViewController {
+    /// 图片URL数组
     var photoURLs = [NSURL]()
+    /// 图片标题数组
     var titles = [String]()
+    /// tableView, 展示最近照片
     var tableView: UITableView!
     
+    // MARK: - UIView
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +34,7 @@ class TopHitVC: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - 初始化设置
     func setDefaultValues() {
         loadFlickrPhotos()
     }
@@ -71,6 +77,7 @@ class TopHitVC: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension TopHitVC: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photoURLs.count
@@ -78,7 +85,7 @@ extension TopHitVC: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
+
         cell.subviews.forEach { subview in
             subview.removeFromSuperview()
         }
@@ -108,6 +115,7 @@ extension TopHitVC: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension TopHitVC: UITableViewDelegate {
 
 }
