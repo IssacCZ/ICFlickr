@@ -16,6 +16,7 @@ class UserProfileVC: UIViewController {
     
     var photoURLs = [NSURL]()
     var titles = [String]()
+    var times = [String]()
     var tableView: UITableView!
     
     /// 用户头像
@@ -30,6 +31,24 @@ class UserProfileVC: UIViewController {
         self.checkAuthentication()
         
         initUI()
+        
+        var total1 = 2.4;
+        var total2 = 0.8 * 4;
+        for index in 3...12 {
+            total1 += 1 + Double(Double(index) / 10.0)
+            print(total1)
+        }
+        
+        for index in 3...12 {
+            total2 += 0.8 * (1 + Double(Double(index) / 10.0))
+            print(total2)
+        }
+        
+        var total3 = 2.4;
+        for _ in 3...12 {
+            total3 += 1
+            print(total3)
+        }
     }
 
     // MARK: - 初始化设置
@@ -53,6 +72,7 @@ class UserProfileVC: UIViewController {
             if (response != nil) {
                 self.photoURLs.removeAll()
                 self.titles.removeAll()
+                self.times.removeAll()
                 print(response)
                 let topPhotos = response["photos"] as! [NSObject: AnyObject]
                 let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
@@ -143,7 +163,31 @@ class UserProfileVC: UIViewController {
 // MARK: - UITableViewDataSource
 extension UserProfileVC: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return photoURLs.count
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 15, y: 0, width: AppUtil.currentWidth() - 30, height: 44)
+        label.textColor = UIColor.whiteColor()
+        label.center.y = 22
+        label.font = UIFont.systemFontOfSize(20)
+        label.text = titles[section]
+        header.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        label.sizeToFit()
+        header.addSubview(label)
+        
+        return header
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -157,7 +201,7 @@ extension UserProfileVC: UITableViewDataSource {
         label.frame = CGRect(x: 15, y: cell.frame.size.height - 15 - 20, width: AppUtil.currentWidth() - 30, height: 20)
         label.textColor = UIColor.whiteColor()
         label.font = UIFont.systemFontOfSize(20)
-        label.text = titles[indexPath.row]
+        label.text = titles[indexPath.section]
         label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         label.sizeToFit()
         
@@ -165,10 +209,10 @@ extension UserProfileVC: UITableViewDataSource {
         imageView.frame = CGRect(x: 0, y: 1, width: AppUtil.currentWidth(), height: cell.frame.size.height - 2)
         imageView.contentMode = .ScaleAspectFill
         imageView.clipsToBounds = true
-        imageView.sd_setImageWithURL(photoURLs[indexPath.row])
+        imageView.sd_setImageWithURL(photoURLs[indexPath.section])
         cell.addSubview(imageView)
         
-        cell.insertSubview(label, aboveSubview: imageView)
+//        cell.insertSubview(label, aboveSubview: imageView)
         
         return cell
     }
