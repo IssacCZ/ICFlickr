@@ -18,6 +18,8 @@ class TopHitVC: UIViewController {
     /// tableView, 展示最近照片
     var tableView: UITableView!
     
+    var photoModels = [PhotoWithURL]()
+    
     // MARK: - UIView
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +48,39 @@ class TopHitVC: UIViewController {
             if (response != nil) {
                 self.photoURLs.removeAll()
                 self.titles.removeAll()
-                print(response)
+//                print(response)
                 let topPhotos = response["photos"] as! [NSObject: AnyObject]
                 let photoArray = topPhotos["photo"] as! [[NSObject: AnyObject]]
                 for photoDictionary in photoArray {
+                    let photoSize = FKFlickrPhotosGetSizes()
+                    photoSize.photo_id = photoDictionary["id"] as! String
+                    fk.call(photoSize, completion: { (response, error) -> Void in
+                        if response != nil {
+                            let sizes = response["sizes"] as! [String: AnyObject]
+                            let size = sizes["size"] as! NSArray
+                            for single in size {
+                                let label = single["label"] as! String
+                                if label == "Small 320" {
+                                    print(single)
+                                    let photoModel = PhotoWithURL()
+                                    photoModel.URL = single["url"] as! String
+                                    let width = "\(single["width"])"
+                                    if let fw = NSNumberFormatter().numberFromString(width) {
+                                        photoModel.width = CGFloat(fw)
+                                    }
+//                                    photoModel.width = single["width"] as! CGFloat
+                                    let height = "\(single["height"])"
+                                    if let fh = NSNumberFormatter().numberFromString(height) {
+                                        photoModel.height = CGFloat(fh)
+                                    }
+                                    photoModel.ratio = photoModel.width / photoModel.height
+                                    
+                                    self.photoModels.append(photoModel)
+                                }
+                            }
+                        }
+                    })
+                    
                     let photoURL = FlickrKit.sharedFlickrKit().photoURLForSize(FKPhotoSizeSmall320, fromPhotoDictionary: photoDictionary)
                     let title = photoDictionary["title"] as! String
                     
