@@ -54,7 +54,7 @@ class SpecialVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
                                     print(single)
                                     let photoModel = PhotoWithURL()
                                     photoModel.URL = single["source"] as! String
-                                    
+                                    photoModel.photoID = photoSize.photo_id
                                     let fw = single["width"]
                                     if let intw = fw as? CGFloat {
                                         photoModel.width = intw
@@ -132,15 +132,15 @@ class SpecialVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 2)
+        return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1
+        return 2
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 2
+        return 3
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -148,10 +148,20 @@ class SpecialVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         return CGSize(width: model.width, height: model.height)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let model = fixModel[indexPath.item]
+//        print(model.photoID)
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoInfoVC") as! PhotoInfoVC
+        vc.photo = model.URL
+        vc.ratio = model.ratio
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
     func fixImageRatio() {
-        let usedScreenWidth: CGFloat = AppUtil.currentWidth() - 4.0
+        let usedScreenWidth: CGFloat = AppUtil.currentWidth() - 10.0
         let minHeightLimit: CGFloat = usedScreenWidth / 3.0
-        let margin: CGFloat = 2.0
+        let margin: CGFloat = 3.0
         
         var index: Int
         for index = 0; index < fixModel.count; index++ {

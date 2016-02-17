@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// 照片模型，已弃用
+/// 照片模型
 class PhotoModel: NSObject {
 
  /// 宽度
@@ -17,4 +17,6 @@ class PhotoModel: NSObject {
     var height: CGFloat = 0
  /// 宽高比
     var ratio: CGFloat = 0
+ /// 照片ID
+    var photoID: String = ""
 }
