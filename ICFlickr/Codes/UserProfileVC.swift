@@ -32,23 +32,23 @@ class UserProfileVC: UIViewController {
         
         initUI()
         
-        var total1 = 2.4;
-        var total2 = 0.8 * 4;
-        for index in 3...12 {
-            total1 += 1 + Double(Double(index) / 10.0)
-            print(total1)
-        }
-        
-        for index in 3...12 {
-            total2 += 0.8 * (1 + Double(Double(index) / 10.0))
-            print(total2)
-        }
-        
-        var total3 = 2.4;
-        for _ in 3...12 {
-            total3 += 1
-            print(total3)
-        }
+//        var total1 = 2.4;
+//        var total2 = 0.8 * 4;
+//        for index in 3...12 {
+//            total1 += 1 + Double(Double(index) / 10.0)
+//            print(total1)
+//        }
+//        
+//        for index in 3...12 {
+//            total2 += 0.8 * (1 + Double(Double(index) / 10.0))
+//            print(total2)
+//        }
+//        
+//        var total3 = 2.4;
+//        for _ in 3...12 {
+//            total3 += 1
+//            print(total3)
+//        }
     }
 
     // MARK: - 初始化设置

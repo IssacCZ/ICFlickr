@@ -118,6 +118,18 @@ class SpecialVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
             subview.removeFromSuperview()
         }
         
+        struct User {
+            let userID: String
+            let username: String
+            let avatarURLString: String
+//            if let
+//            URL = NSURL(string: avatarURLString),
+//            data = NSData(contentsOfURL: URL),
+//            image = UIImage(data: data) {
+//                
+//            }
+        }
+        
         let imageView:UIImageView = UIImageView()
         imageView.frame = cell.bounds
         imageView.contentMode = .ScaleAspectFill
