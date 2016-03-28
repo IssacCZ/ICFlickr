@@ -176,7 +176,7 @@ class SpecialVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         let margin: CGFloat = 3.0
         
         var index: Int
-        for index = 0; index < fixModel.count; index++ {
+        for index = 0; index < fixModel.count; index += 1 {
             let model = fixModel[index]
             let scale: CGFloat = minHeightLimit / model.height
             model.height = model.height * scale
