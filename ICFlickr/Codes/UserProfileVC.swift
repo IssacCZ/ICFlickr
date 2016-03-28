@@ -224,5 +224,10 @@ extension UserProfileVC: UITableViewDataSource {
 
 // MARK: - UITableViewDelegatge
 extension UserProfileVC: UITableViewDelegate {
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoInfoVC") as! PhotoInfoVC
+        vc.photo = String(format: "%@", photoURLs[indexPath.section])
+        vc.ratio = 21.0 / 9
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

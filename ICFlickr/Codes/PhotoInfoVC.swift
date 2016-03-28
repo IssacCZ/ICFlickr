@@ -40,7 +40,8 @@ class PhotoInfoVC: UIViewController {
         photoView.frame.origin = CGPoint(x: 0, y: 70)
         photoView.sd_setImageWithURL(NSURL(string: photo!))
         photoView.clipsToBounds = true
-        photoView.backgroundColor = UIColor.yellowColor()
+        photoView.contentMode = .ScaleAspectFill
+        photoView.backgroundColor = UIColor.lightGrayColor()
         
         print(photoView.frame)
     }
